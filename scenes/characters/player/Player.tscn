@@ -1,0 +1,1136 @@
+[gd_scene load_steps=58 format=2]
+
+[ext_resource path="res://assetpacks/MysticWood_sprites/characters/player.png" type="Texture" id=1]
+[ext_resource path="res://scripts/statemachine/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerIdle.gd" type="Script" id=3]
+[ext_resource path="res://scenes/characters/player/Player.gd" type="Script" id=4]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerMove.gd" type="Script" id=5]
+[ext_resource path="res://scenes/characters/player/PlayerCamera.gd" type="Script" id=6]
+[ext_resource path="res://img/ui/hud_aim_reticle.png" type="Texture" id=7]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerRoll.gd" type="Script" id=8]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerSwordAtk1.gd" type="Script" id=9]
+[ext_resource path="res://img/characters/amazoncrash_protag1_sheet.png" type="Texture" id=10]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerDead.gd" type="Script" id=19]
+[ext_resource path="res://scenes/characters/Hurtbox.gd" type="Script" id=20]
+[ext_resource path="res://scenes/characters/Hitbox.gd" type="Script" id=21]
+[ext_resource path="res://img/characters/player_sword.png" type="Texture" id=22]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerSwordAtk2.gd" type="Script" id=23]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerSwordAtk3.gd" type="Script" id=24]
+[ext_resource path="res://img/characters/player_spear.png" type="Texture" id=25]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerSpearAtk1.gd" type="Script" id=26]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerSpearAtk2.gd" type="Script" id=27]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerSpearAtk3.gd" type="Script" id=28]
+[ext_resource path="res://img/characters/player_bow.png" type="Texture" id=29]
+[ext_resource path="res://scenes/characters/player/player_states/PlayerPullBow.gd" type="Script" id=30]
+[ext_resource path="res://fonts/OpenSans-Bold.ttf" type="DynamicFontData" id=31]
+
+[sub_resource type="Animation" id=6]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sword/axis/sword_sprite/Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("sword/axis/sword_sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -44.9999 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("sword/axis:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -89.9999 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("sword/axis/sword_sprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("spear/axis:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("spear/axis/spear_sprite:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10, 4.47035e-05 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("spear/axis/spear_sprite:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("spear/axis/spear_sprite/Hitbox/CollisionShape2D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "audid"
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "roll"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.2, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 25, 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.2, 0.275 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -8 ), Vector2( 0, -8 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sword/axis:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -89.9999 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("sword/axis/sword_sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("spear/axis/spear_sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "spear1"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("spear/axis/spear_sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 44.9999, 44.9999, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("spear/axis:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 180.0, 359.999, 359.999, 180.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("spear/axis/spear_sprite:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.25, 0.35, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.90735e-06, 0 ), Vector2( 1.90735e-06, 0 ), Vector2( 32, 0 ), Vector2( 8, 0 ), Vector2( 8, 0 ), Vector2( 1.90735e-06, 0 ), Vector2( 10, 4.47035e-05 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("StateMachine/SpearAtk1:can_roll")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("StateMachine/SpearAtk1:can_combo")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("spear/axis/spear_sprite/Hitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "spear2"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("spear/axis/spear_sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.55, 0.6, 0.7, 0.75, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 44.9999, 44.9999, -44.9999, -135.0, -225.0, -315.0, -359.999 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("spear/axis:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.45, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 480.0, 449.999, 360.0, 270.0, 180.0, 180.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("spear/axis/spear_sprite:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.25, 0.4, 0.45, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.90735e-06, 0 ), Vector2( 8, 0 ), Vector2( 32, 0 ), Vector2( 32, 0 ), Vector2( 8, 0 ), Vector2( 8, 0 ), Vector2( 10, 4.47035e-05 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("spear/axis/spear_sprite/Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("StateMachine/SpearAtk2:can_roll")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("StateMachine/SpearAtk2:can_combo")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "spear3"
+length = 1.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("spear/axis/spear_sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.65, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 30.0, 30.0, 60.0, 40.0, 44.9999, 44.9999, 30.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("spear/axis:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 1.05, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 200.0, 359.999, 359.999, 180.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("spear/axis/spear_sprite:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.25, 0.3, 0.45, 0.5, 0.65, 0.75, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.90735e-06, 0 ), Vector2( 1.90735e-06, 0 ), Vector2( 24, 0 ), Vector2( 8, 0 ), Vector2( 24, 0 ), Vector2( 8, 0 ), Vector2( 24, 0 ), Vector2( 8, 0 ), Vector2( 8, 0 ), Vector2( 40, 0 ), Vector2( 32, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("spear/axis/spear_sprite/Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.75, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("StateMachine/SpearAtk3:can_roll")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.95 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("StateMachine/SpearAtk3:can_combo")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.95 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("StateMachine/SpearAtk3")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.05, 0.25, 0.45, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step_forward"
+}, {
+"args": [  ],
+"method": "step_forward"
+}, {
+"args": [  ],
+"method": "step_forward"
+}, {
+"args": [  ],
+"method": "rush_forward"
+} ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "sword1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sword/axis:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.45, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -89.9999, 89.9999, 89.9999, -89.9999 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sword/axis/sword_sprite/Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("sword/axis/sword_sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.45, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -44.9999, 89.9999, 89.9999, -44.9999 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("StateMachine/SwordAtk1:can_roll")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("StateMachine/SwordAtk1:can_combo")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "sword2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sword/axis:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 89.9999, -135.0, -135.0, -89.9999 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sword/axis/sword_sprite/Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("sword/axis/sword_sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 135.0, 0.0, 0.0, -44.9999 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("StateMachine/SwordAtk2:can_roll")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("StateMachine/SwordAtk2:can_combo")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "sword3"
+length = 0.9
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sword/axis:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.3, 0.4, 0.65, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -89.9999, 0.0, 89.9999, 180.0, 270.0, 359.999, 359.999, 270.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sword/axis/sword_sprite/Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("sword/axis/sword_sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.65, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -44.9999, 44.9999, 44.9999, -44.9999 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.5 ],
+"method": "set_invincible"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("StateMachine/SwordAtk3:can_roll")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "walk"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.0
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 7.0
+height = 16.0
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 9.19239, 4.24264 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 4.95078, 11.5 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 10 )
+region = Rect2( 128, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 10 )
+region = Rect2( 256, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 10 )
+region = Rect2( 384, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 10 )
+region = Rect2( 256, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 10 )
+region = Rect2( 256, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 10 )
+region = Rect2( 128, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 10 )
+region = Rect2( 384, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 10 )
+region = Rect2( 384, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 10 )
+region = Rect2( 128, 128, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 25 ), SubResource( 27 ) ],
+"loop": true,
+"name": "down",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 28 ), SubResource( 30 ) ],
+"loop": true,
+"name": "left",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 31 ), SubResource( 33 ) ],
+"loop": true,
+"name": "right",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 34 ), SubResource( 36 ) ],
+"loop": true,
+"name": "up",
+"speed": 8.0
+} ]
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0, 0.613402, 0.778351, 0.93299, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0199025, 0.206082, 0.242622, 1, 0.0275574, 0.285344, 0.335938, 1, 0.0192261, 0.228001, 0.273347, 1, 0, 0.0956726, 0.128906, 1 )
+
+[sub_resource type="GradientTexture2D" id=19]
+gradient = SubResource( 18 )
+width = 6
+height = 18
+fill_from = Vector2( 1, 1 )
+
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 0.0360825, 0.546392, 0.912371, 1 )
+colors = PoolColorArray( 0.0204773, 0.230704, 0.476563, 1, 0.0156863, 0.513726, 1, 1, 0.0703125, 0.934631, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=21]
+gradient = SubResource( 20 )
+width = 4
+height = 16
+fill_from = Vector2( 0, 1 )
+fill_to = Vector2( 0, 0 )
+
+[sub_resource type="DynamicFont" id=23]
+size = 20
+outline_size = 2
+outline_color = Color( 0.0156863, 0.513726, 1, 1 )
+font_data = ExtResource( 31 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 20
+outline_size = 2
+outline_color = Color( 1, 0.0156863, 0.0156863, 1 )
+font_data = ExtResource( 31 )
+
+[node name="Player" type="KinematicBody2D" groups=["PLAYER"]]
+script = ExtResource( 4 )
+max_hp = 50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
+anims/audid = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/roll = SubResource( 7 )
+anims/spear1 = SubResource( 15 )
+anims/spear2 = SubResource( 16 )
+anims/spear3 = SubResource( 17 )
+anims/sword1 = SubResource( 12 )
+anims/sword2 = SubResource( 9 )
+anims/sword3 = SubResource( 13 )
+anims/walk = SubResource( 8 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 2 )
+initial_state = NodePath("Move")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource( 19 )
+
+[node name="Idle(deprecated)" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+MOVE_SPEED = 220.0
+FRICTION = 0.3
+
+[node name="Roll" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+ROLL_START_SPEED = 600.0
+DURATION = 0.3
+
+[node name="SwordAtk1" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+animation_name = "sword1"
+
+[node name="SwordAtk2" type="Node" parent="StateMachine"]
+script = ExtResource( 23 )
+animation_name = "sword2"
+
+[node name="SwordAtk3" type="Node" parent="StateMachine"]
+script = ExtResource( 24 )
+can_roll = true
+animation_name = "sword3"
+
+[node name="SpearAtk1" type="Node" parent="StateMachine"]
+script = ExtResource( 26 )
+can_roll = true
+can_combo = true
+animation_name = "spear1"
+
+[node name="SpearAtk2" type="Node" parent="StateMachine"]
+script = ExtResource( 27 )
+can_roll = true
+can_combo = true
+animation_name = "spear2"
+
+[node name="SpearAtk3" type="Node" parent="StateMachine"]
+script = ExtResource( 28 )
+animation_name = "spear3"
+
+[node name="PullBow" type="Node" parent="StateMachine"]
+script = ExtResource( 30 )
+
+[node name="collision_scenario" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.7, 0.7 )
+script = ExtResource( 6 )
+
+[node name="aim_reticle" type="Sprite" parent="PlayerCamera"]
+modulate = Color( 1, 0, 0, 1 )
+z_index = 1000
+z_as_relative = false
+texture = ExtResource( 7 )
+
+[node name="camera_reticle" type="Sprite" parent="PlayerCamera"]
+z_index = 1000
+z_as_relative = false
+texture = ExtResource( 7 )
+
+[node name="hurtbox" type="Area2D" parent="."]
+position = Vector2( 0, -1 )
+script = ExtResource( 20 )
+
+[node name="col" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( 0, -10 )
+shape = SubResource( 2 )
+
+[node name="invincibility_timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="spear" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.439216 )
+position = Vector2( 0, -10 )
+
+[node name="axis" type="Node2D" parent="spear"]
+rotation = 3.14159
+
+[node name="spear_sprite" type="Sprite" parent="spear/axis"]
+position = Vector2( 10, 4.47035e-05 )
+texture = ExtResource( 25 )
+
+[node name="Hitbox" type="Area2D" parent="spear/axis/spear_sprite"]
+script = ExtResource( 21 )
+damage = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spear/axis/spear_sprite/Hitbox"]
+position = Vector2( 8.00003, -7.99996 )
+rotation = -0.785397
+shape = SubResource( 14 )
+disabled = true
+
+[node name="sword" type="Node2D" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.439216 )
+position = Vector2( 0, -10 )
+
+[node name="axis" type="Node2D" parent="sword"]
+rotation = -1.57079
+
+[node name="sword_sprite" type="Sprite" parent="sword/axis"]
+position = Vector2( 11.0492, 0.0659256 )
+rotation = -0.785396
+texture = ExtResource( 22 )
+offset = Vector2( 4.93405, -4.95078 )
+
+[node name="Hitbox" type="Area2D" parent="sword/axis/sword_sprite"]
+rotation = -0.000239312
+script = ExtResource( 21 )
+damage = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sword/axis/sword_sprite/Hitbox"]
+position = Vector2( 5.34995, -5.34995 )
+rotation = 0.785397
+shape = SubResource( 11 )
+disabled = true
+
+[node name="sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -18 )
+texture = ExtResource( 1 )
+hframes = 6
+vframes = 5
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 10 )
+animation = "down"
+playing = true
+offset = Vector2( 0, -48 )
+
+[node name="bow" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.478431 )
+position = Vector2( 0, -10 )
+
+[node name="axis" type="Node2D" parent="bow"]
+
+[node name="bow_sprite" type="Sprite" parent="bow/axis"]
+position = Vector2( 11, 0 )
+texture = ExtResource( 29 )
+offset = Vector2( -6.06595, 0.0492201 )
+
+[node name="bow_pull_indicator" type="Node2D" parent="."]
+position = Vector2( 0, -10 )
+
+[node name="bg" type="Sprite" parent="bow_pull_indicator"]
+modulate = Color( 1, 1, 1, 0.588235 )
+position = Vector2( 9, -11 )
+texture = SubResource( 19 )
+
+[node name="fg" type="Sprite" parent="bow_pull_indicator"]
+modulate = Color( 1, 1, 1, 0.784314 )
+position = Vector2( 9, -3 )
+scale = Vector2( 1, 0.5 )
+texture = SubResource( 21 )
+offset = Vector2( 0, -8 )
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+
+[node name="bow_energy_display" type="HBoxContainer" parent="PlayerHUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 30.0
+margin_right = -316.0
+margin_bottom = -282.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PlayerHUD/bow_energy_display"]
+margin_top = 10.0
+margin_right = 130.0
+margin_bottom = 38.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 23 )
+text = "BOW ENERGY"
+
+[node name="bar" type="ColorRect" parent="PlayerHUD/bow_energy_display"]
+margin_left = 134.0
+margin_top = 9.0
+margin_right = 319.0
+margin_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+color = Color( 0, 0.215686, 0.219608, 1 )
+
+[node name="fg" type="ColorRect" parent="PlayerHUD/bow_energy_display/bar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -3.0
+margin_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 26 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+color = Color( 0.0156863, 0.513726, 1, 1 )
+
+[node name="health_display" type="HBoxContainer" parent="PlayerHUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -316.0
+margin_bottom = -307.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PlayerHUD/health_display"]
+margin_top = 10.0
+margin_right = 78.0
+margin_bottom = 38.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 24 )
+text = "HEALTH"
+
+[node name="bar" type="ColorRect" parent="PlayerHUD/health_display"]
+margin_left = 82.0
+margin_top = 9.0
+margin_right = 319.0
+margin_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+color = Color( 0.219608, 0, 0.0705882, 1 )
+
+[node name="fg" type="ColorRect" parent="PlayerHUD/health_display/bar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -3.0
+margin_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 26 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+color = Color( 1, 0.0156863, 0.109804, 1 )
+
+[connection signal="hp_changed" from="." to="." method="_on_Player_hp_changed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

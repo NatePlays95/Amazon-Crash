@@ -1,0 +1,11 @@
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+ <title>State</title>
+
+ <g>
+  <title>Layer 1</title>
+  <path stroke="#ffffff" id="svg_2" d="m1.454,5.16876c0,-1.08676 0.91324,-2 2,-2l9.09201,0c1.08676,0 2,0.91324 2,2l0,5.66247c0,1.08676 -0.91324,2 -2,2l-9.09201,0c-1.08676,0 -2,-0.91324 -2,-2l0,-5.66247z" opacity="undefined" fill="#fff"/>
+  <rect stroke="#000000" rx="1" id="svg_7" height="7.75" width="11.1875" y="4.15625" x="2.46875" fill-opacity="0" fill="#0fffff"/>
+  <ellipse ry="2.125" rx="2.125" id="svg_10" cy="8" cx="1.96875" stroke-width="0" stroke="#ffffff" fill="#000000"/>
+  <ellipse ry="2.125" rx="2.125" id="svg_11" cy="8" cx="14.15625" stroke-width="0" stroke="#ffffff" fill="#000000"/>
+ </g>
+</svg>

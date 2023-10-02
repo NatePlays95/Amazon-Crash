@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/characters/Hitbox.gd" type="Script" id=1]
+[ext_resource path="res://scenes/characters/player/PlayerBullet.gd" type="Script" id=2]
+[ext_resource path="res://img/characters/player_bullet.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 0.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 5.0
+
+[node name="Bullet" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="solid" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource( 1 )
+damage = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hit_area"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hit_wall"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

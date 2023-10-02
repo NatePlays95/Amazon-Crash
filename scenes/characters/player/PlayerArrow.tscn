@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/characters/Hitbox.gd" type="Script" id=1]
+[ext_resource path="res://scenes/characters/player/PlayerArrow.gd" type="Script" id=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+period = 32.0
+
+[sub_resource type="NoiseTexture" id=2]
+width = 2048
+height = 16
+noise = SubResource( 1 )
+noise_offset = Vector2( -0.431, 0 )
+
+[sub_resource type="SegmentShape2D" id=3]
+b = Vector2( 2047, 0 )
+
+[node name="PlayerArrow" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Noise" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0, 0.929412, 1, 1 )
+position = Vector2( 767, 0 )
+texture = SubResource( 2 )
+offset = Vector2( 256, 0 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource( 1 )
+damage = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = -39.0
+margin_right = 92.0
+margin_bottom = -25.0
+rect_scale = Vector2( 2.43441, 2.43441 )
+text = "PLACEHOLDER"

@@ -1,0 +1,433 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://scenes/characters/bosses/Boss.gd" type="Script" id=1]
+[ext_resource path="res://scripts/statemachine/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://scenes/characters/Hurtbox.gd" type="Script" id=3]
+[ext_resource path="res://img/characters/debug.png" type="Texture" id=4]
+[ext_resource path="res://scenes/characters/bosses/boss_states/BossChasePlayer.gd" type="Script" id=5]
+[ext_resource path="res://scenes/characters/bosses/boss1/Boss1Jump1.gd" type="Script" id=6]
+[ext_resource path="res://scenes/characters/Hitbox.gd" type="Script" id=7]
+[ext_resource path="res://scenes/characters/bosses/boss1/Boss1Tackle1.gd" type="Script" id=8]
+[ext_resource path="res://scenes/characters/bosses/boss1/Boss1SummonClones1.gd" type="Script" id=9]
+[ext_resource path="res://scenes/characters/bosses/boss1/Boss1Spawning.gd" type="Script" id=10]
+[ext_resource path="res://scenes/characters/bosses/boss1/Boss1Dead.gd" type="Script" id=11]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("collision_scenario:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/hitbox_jump1/hitbox_jump1_col:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/hitbox_tackle1/hitbox_tackle1_col:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Sprite:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body/Sprite:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "dead"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Sprite:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.35, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -20.0, 20.0, -20.0, 90.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Sprite:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.2, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump1"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 0.450625, 1, 3.605, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ), Vector2( 0, -30 ), Vector2( 0, -150 ), Vector2( 0, -150 ), Vector2( 0, -30 ), Vector2( 0, -30 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("StateMachine/Jump1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 1.1 ],
+"method": "jump"
+}, {
+"args": [  ],
+"method": "spawn_stomp"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 3 ), Vector2( 2, 2 ), Vector2( 2, 2 ), Vector2( 2, 3 ), Vector2( 2, 3 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("collision_scenario:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/hitbox_jump1/hitbox_jump1_col:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "spawn"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -400 ), Vector2( 0, -30 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.25, 0.45 ),
+"transitions": PoolRealArray( 1, 2.14355, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 3 ), Vector2( 2, 1 ), Vector2( 2, 3 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "summon_clones1"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("StateMachine/SummonClones1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1.5, 3.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "go_to_center"
+}, {
+"args": [  ],
+"method": "spawn_clones"
+}, {
+"args": [  ],
+"method": "explode_clones"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.8 ],
+"method": "set_invincible"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("StateMachine/SummonClones1:can_interrupt")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "tackle1"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("StateMachine/Tackle1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_tackle_marker"
+}, {
+"args": [  ],
+"method": "spawn_tackle_marker"
+}, {
+"args": [  ],
+"method": "spawn_tackle_marker"
+}, {
+"args": [  ],
+"method": "spawn_tackle_marker"
+}, {
+"args": [  ],
+"method": "spawn_tackle_marker"
+}, {
+"args": [  ],
+"method": "spawn_tackle_marker"
+}, {
+"args": [  ],
+"method": "spawn_tackle_marker"
+}, {
+"args": [  ],
+"method": "spawn_tackle_marker"
+}, {
+"args": [  ],
+"method": "choose_tackle_marker"
+}, {
+"args": [  ],
+"method": "start_tackle"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/hitbox_tackle1/hitbox_tackle1_col:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 11.0
+height = 13.9999
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 44, 108 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 48.0
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 38, 39 )
+
+[node name="Boss" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+max_hp = 250.0
+INV_AFTER_HIT = 0.05
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/dead = SubResource( 10 )
+anims/jump1 = SubResource( 4 )
+anims/spawn = SubResource( 9 )
+anims/summon_clones1 = SubResource( 8 )
+anims/tackle1 = SubResource( 6 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 2 )
+initial_state = NodePath("Spawning")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
+[node name="Spawning" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="ChasePlayer" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+MOVE_SPEED = 50.0
+ROTATION_FACTOR = 0.1
+
+[node name="Jump1" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="Tackle1" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+
+[node name="SummonClones1" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="collision_scenario" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource( 1 )
+
+[node name="Body" type="Node2D" parent="."]
+modulate = Color( 0.698039, 0.447059, 1, 1 )
+position = Vector2( 0, -30 )
+
+[node name="Sprite" type="Sprite" parent="Body"]
+modulate = Color( 0.698039, 0.447059, 1, 1 )
+position = Vector2( 0, 30 )
+scale = Vector2( 2, 3 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -10 )
+
+[node name="hurtbox" type="Area2D" parent="Body"]
+scale = Vector2( 0.5, 0.333333 )
+script = ExtResource( 3 )
+type = 1
+
+[node name="col" type="CollisionShape2D" parent="Body/hurtbox"]
+position = Vector2( 0, 9 )
+shape = SubResource( 2 )
+
+[node name="hitbox_jump1" type="Area2D" parent="Body"]
+position = Vector2( 0, 30 )
+script = ExtResource( 7 )
+source = 1
+damage = 10.0
+
+[node name="hitbox_jump1_col" type="CollisionShape2D" parent="Body/hitbox_jump1"]
+shape = SubResource( 5 )
+disabled = true
+
+[node name="hitbox_tackle1" type="Area2D" parent="Body"]
+position = Vector2( 0, 30 )
+script = ExtResource( 7 )
+source = 1
+damage = 15.0
+
+[node name="hitbox_tackle1_col" type="CollisionShape2D" parent="Body/hitbox_tackle1"]
+position = Vector2( 0, -20 )
+shape = SubResource( 7 )
+disabled = true
+
+[connection signal="hp_changed" from="." to="." method="_on_hp_changed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="area_entered" from="Body/hurtbox" to="." method="_on_hurtbox_area_entered"]
