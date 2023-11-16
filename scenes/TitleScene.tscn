@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/TitleScene.gd" type="Script" id=1]
 [ext_resource path="res://img/characters/debug.png" type="Texture" id=2]
 [ext_resource path="res://img/characters/player.png" type="Texture" id=3]
-[ext_resource path="res://img/characters/7JU41IB.jpg" type="Texture" id=4]
 
 [node name="Title" type="Node"]
 script = ExtResource( 1 )
@@ -20,8 +19,8 @@ margin_bottom = 266.0
 text = "PLAY"
 
 [node name="7ju41ib" type="Sprite" parent="Control"]
+visible = false
 position = Vector2( -123, 165 )
-texture = ExtResource( 4 )
 
 [node name="Player" type="Sprite" parent="Control/7ju41ib"]
 position = Vector2( -109, -329 )

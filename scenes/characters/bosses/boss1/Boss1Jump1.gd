@@ -13,8 +13,6 @@ func enter(_msg := {}) -> void:
 	print_debug("started_jump")
 	jump_time = 0
 	boss.anim_player.play("jump1")
-	
-
 
 func physics_update(_dt) -> void:
 	if jump_time > 0:
